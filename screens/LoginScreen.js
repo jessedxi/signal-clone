@@ -1,11 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
+import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
 import { Button, Input, Image } from "react-native-elements";
+import { auth } from '../firebase';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        navigation.replace("Home");
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
+  const signIn = () => {
+
+  };
+
   return (
-    <View>
+    <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <StatusBar style="light" />
       <Image source={{
         uri:
@@ -13,15 +31,38 @@ const LoginScreen = () => {
       }}
         style={{ width: 200, height: 200 }}
       />
-      <View style={styles.InputContainer}>
-        <Input placeholder="Email" autoFocus type="Email" />
+      <View style={styles.inputContainer}>
+        <Input placeholder="Email" autoFocus type="Email"
+          onChangeText={(text) => setEmail(text)} />
+        <Input placeholder="Password" secureTextEntry type="password"
+          onChangeText={(text) => setPassword(text)} />
       </View>
-    </View>
+
+      <Button  containerStyle={styles.button} title="Login" onPress={signIn} />
+      <Button 
+      onPress={() => navigation.navigate("Register")}
+      containerStyle={styles.button} 
+      title="Register" 
+      type="outline"/>
+      <View style={{height: 100}} />
+    </KeyboardAvoidingView>
   )
 }
 
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  InputContainer: {}
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10
+  },
+  inputContainer: {
+    width: 300
+  },
+  button: {
+    width: 200,
+    marginTop: 10
+  }
 })
