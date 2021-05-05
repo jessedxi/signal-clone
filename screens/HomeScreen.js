@@ -1,9 +1,19 @@
-import React from 'react'
+
+import React, { useLayoutEffect } from 'react'
 import { StyleSheet, Text, SafeAreaView, ScrollView } from 'react-native'
 import CustomListItem from './CustomListItem'
 
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: ""
+    });
+  }, []);
+
+
+
   return (
     <SafeAreaView>
      <ScrollView>
