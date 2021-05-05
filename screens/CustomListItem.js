@@ -13,7 +13,14 @@ const CustomListItem = () => {
       }}
       />
        <ListItem.Content>
-      
+         <ListItem.Title style={{ fontWeight: "800" }}>
+           Chat
+         </ListItem.Title>
+         <ListItem.Subtitle numberOfLines={1}
+         ellipsizeMode="tail"
+         >
+           This is a test subtitle
+         </ListItem.Subtitle>
       </ListItem.Content>
     </ListItem>
   )
