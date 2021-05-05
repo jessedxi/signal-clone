@@ -7,6 +7,12 @@ import { Avatar } from "react-native-elements"
 
 const HomeScreen = ({ navigation }) => {
 
+  const signOutUser = () => {
+    auth.signOut().then(() => {
+      navigation.replace("Login");
+    })
+  }
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "Signal",
@@ -15,7 +21,7 @@ const HomeScreen = ({ navigation }) => {
       headerTintColor: "black",
       headerLeft: () => (
         <View style={{ marginLeft: 20 }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={signOutUser} activeOpacity={0.5}>
             <Avatar rounded source={{ uri: auth?.currentUser?.photoURL }} />
           </TouchableOpacity>
         </View>
