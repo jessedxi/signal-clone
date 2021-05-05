@@ -1,6 +1,6 @@
 import { auth } from "../firebase";
 import React, { useLayoutEffect } from 'react'
-import { StyleSheet, Text, SafeAreaView, ScrollView, View } from 'react-native'
+import { StyleSheet, Text, SafeAreaView, ScrollView, View, TouchableOpacity } from 'react-native'
 import CustomListItem from './CustomListItem'
 import { Avatar } from "react-native-elements"
 
@@ -10,13 +10,15 @@ const HomeScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "Signal",
-      headerStyle: { backgroundColor: "#fff"},
+      headerStyle: { backgroundColor: "#fff" },
       headerTitleStyle: { color: "black" },
       headerTintColor: "black",
       headerLeft: () => (
-         <View style={{ marginLeft: 20 }}>
-        <Avatar rounded source={{ uri: auth?.currentUser?.photoURL }}/>
-      </View>
+        <View style={{ marginLeft: 20 }}>
+          <TouchableOpacity>
+            <Avatar rounded source={{ uri: auth?.currentUser?.photoURL }} />
+          </TouchableOpacity>
+        </View>
       ),
     });
   }, []);
@@ -25,9 +27,9 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-     <ScrollView>
-       <CustomListItem />
-     </ScrollView>
+      <ScrollView>
+        <CustomListItem />
+      </ScrollView>
     </SafeAreaView>
   )
 }
