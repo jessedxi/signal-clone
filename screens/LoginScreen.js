@@ -34,11 +34,17 @@ const LoginScreen = ({ navigation }) => {
       <View style={styles.inputContainer}>
         <Input placeholder="Email" autoFocus type="Email"
           onChangeText={(text) => setEmail(text)} />
-        <Input placeholder="Password" secureTextEntry type="password"
-          onChangeText={(text) => setPassword(text)} />
+        <Input placeholder="Password" 
+        secureTextEntry 
+        type="password"
+        onChangeText={(text) => setPassword(text)} 
+        onSubmitEditing={signIn}/>
       </View>
 
-      <Button  containerStyle={styles.button} title="Login" onPress={signIn} />
+      <Button  containerStyle={styles.button} 
+      title="Login" 
+      onPress={signIn} 
+      />
       <Button 
       onPress={() => navigation.navigate("Register")}
       containerStyle={styles.button} 
