@@ -26,6 +26,9 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       ),
+      headerRight: () => {
+        
+      }
     });
   }, []);
 
