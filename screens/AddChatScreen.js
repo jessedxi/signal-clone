@@ -14,6 +14,17 @@ const AddChatScreen = ({ navigation }) => {
 
   }, [navigation]);
 
+  const createChat = async () => {
+    await db
+    .collection('chats')
+    .add({
+      chatName: input
+    }).then(() => {
+      navigation.goBack()
+    })
+    .catch((error) => alert(error));
+  }
+
   return (
     <View style={styles.container}>
       <Input placeholder="Enter a chat name"
@@ -23,7 +34,7 @@ const AddChatScreen = ({ navigation }) => {
           <Icon name="wechat" type="antdesign" size={24} color="black" />
         }
       />
-      
+      <Button onPress={createChat} title="Create a new Chat" />
     </View>
   )
 };
