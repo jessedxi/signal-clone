@@ -30,6 +30,7 @@ const HomeScreen = ({ navigation }) => {
         }))
       )
     );
+
     return unsubscribe;
   }, []);
 
