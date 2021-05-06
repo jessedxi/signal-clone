@@ -31,6 +31,7 @@ const AddChatScreen = ({ navigation }) => {
       <Input placeholder="Enter a chat name"
         calue={input}
         onChangeText={(text) => setInput(text)}
+        onSubmitEditing={createChat}
         leftIcon={
           <Icon name="wechat" type="antdesign" size={24} color="black" />
         }
